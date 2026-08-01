@@ -5,8 +5,8 @@ Implement `wikify/indexer.py` and `wikify/chunker.py`. Scans a directory, ignore
 
 **Blocked by:** 01 — SQLite Vector DB Infrastructure
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] `wikify/indexer.py` scans directory and checks SHA-256 against DB.
-- [ ] `wikify/chunker.py` splits `.py`, `.cs`, `.js`, `.md` into semantic chunks.
-- [ ] PyTest test `tests/test_indexer.py` passes.
+- [x] `wikify/indexer.py` scans directory and checks SHA-256 against DB.
+- [x] `wikify/chunker.py` splits `.py`, `.cs`, `.js`, `.md` into semantic chunks.
+- [x] PyTest test `tests/test_indexer.py` passes.
