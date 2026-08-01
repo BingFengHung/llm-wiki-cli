@@ -5,7 +5,7 @@ Add GitHub Actions workflow `.github/workflows/ci.yml` and finalize `pyproject.t
 
 **Blocked by:** 04 — CLI Commands Engine
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] `.github/workflows/ci.yml` runs ruff linter and pytest on every PR.
-- [ ] `pip install .` installs `wikify` binary executable in PATH.
+- [x] `.github/workflows/ci.yml` runs ruff linter and pytest on every PR.
+- [x] `pip install .` installs `wikify` binary executable in PATH.
