@@ -5,9 +5,9 @@ Implement `wikify/cli.py` using `typer` and `rich`. Expose `wikify sync [PATH]`,
 
 **Blocked by:** 03 — Local Embeddings & LLM Provider Subprocess
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] `wikify sync` command runs end-to-end indexing, wiki compiling, and vector storage.
-- [ ] `wikify ask` command executes hybrid vector search and streams LLM answer with source citations.
-- [ ] `wikify status` displays formatted knowledge base statistics.
-- [ ] PyTest CLI integration tests pass.
+- [x] `wikify sync` command runs end-to-end indexing, wiki compiling, and vector storage.
+- [x] `wikify ask` command executes hybrid vector search and streams LLM answer with source citations.
+- [x] `wikify status` displays formatted knowledge base statistics.
+- [x] PyTest CLI integration tests pass.
