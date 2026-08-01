@@ -5,8 +5,8 @@ Implement `wikify/embeddings.py` using `sentence-transformers` and `wikify/llm.p
 
 **Blocked by:** 02 — Incremental Hash Tracker & Chunker
 
-**Status:** ready-for-agent
+**Status:** done
 
-- [ ] `wikify/embeddings.py` generates 384-d vectors using `all-MiniLM-L6-v2`.
-- [ ] `wikify/llm.py` calls `agy` via subprocess and streams response text.
-- [ ] PyTest test `tests/test_llm.py` with mock subprocess passes.
+- [x] `wikify/embeddings.py` generates 384-d vectors using `all-MiniLM-L6-v2`.
+- [x] `wikify/llm.py` calls `agy` via subprocess and streams response text.
+- [x] PyTest test `tests/test_llm.py` with mock subprocess passes.
