@@ -13,13 +13,21 @@ from wikify.chunker import chunk_text
 from wikify.embeddings import EmbeddingEngine
 from wikify.llm import LLMProvider
 
+import sys
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 app = typer.Typer(
     name="wikify",
     help="Autonomous CLI Agent compiling local codebases and notes into an interlinked LLM Wiki.",
     add_completion=False
 )
 
-console = Console()
+console = Console(legacy_windows=False)
 
 def get_db_path(target_path: str) -> str:
     return os.path.join(os.path.abspath(target_path), ".wikify", "knowledge.db")
