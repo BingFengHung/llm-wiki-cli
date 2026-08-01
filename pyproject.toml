@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wikify"
+version = "0.1.0"
+description = "Autonomous CLI Agent compiling local codebases and notes into an interlinked LLM Wiki powered by SQLite vector search."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "BingFengHung" }
+]
+dependencies = [
+    "typer>=0.9.0",
+    "rich>=13.0.0",
+    "sqlite-vec>=0.1.1",
+    "sentence-transformers>=2.2.2",
+    "pytest>=7.4.0"
+]
+
+[project.scripts]
+wikify = "wikify.cli:app"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
