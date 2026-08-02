@@ -1,5 +1,7 @@
 # 🚀 wikify (`llm-wiki-cli`)
 
+[English](README.md) | [繁體中文](README_zh.md)
+
 > An autonomous CLI Agent that compiles local codebases and notes into an interlinked, searchable LLM Wiki powered by SQLite vector search (`sqlite-vec`) and local AI models.
 
 Inspired by **Andrej Karpathy's LLM Wiki** concept.
