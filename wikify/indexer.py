@@ -4,7 +4,7 @@ from typing import List, Dict, Any
 from wikify.database import DatabaseManager
 
 DEFAULT_ALLOWED_EXTENSIONS = {
-    ".md", ".txt", ".py", ".cs", ".js", ".ts", ".jsx", ".tsx", ".json", ".yaml", ".yml"
+    ".md", ".txt", ".py", ".cs", ".js", ".ts", ".jsx", ".tsx", ".json", ".yaml", ".yml", ".ipynb", ".sql"
 }
 
 DEFAULT_IGNORED_DIRS = {
