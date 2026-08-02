@@ -66,7 +66,24 @@ class Indexer:
                     
                     if stored_hash != current_hash:
                         with open(full_path, "r", encoding="utf-8", errors="ignore") as f:
-                            content = f.read()
+                            raw_content = f.read()
+                            
+                        # Clean Jupyter Notebook JSON if .ipynb
+                        if ext == ".ipynb":
+                            try:
+                                import json
+                                nb_data = json.loads(raw_content)
+                                cell_texts = []
+                                for cell in nb_data.get("cells", []):
+                                    if cell.get("cell_type") in ("code", "markdown"):
+                                        source = "".join(cell.get("source", []))
+                                        if source.strip():
+                                            cell_texts.append(source)
+                                content = "\n\n".join(cell_texts)
+                            except Exception:
+                                content = raw_content
+                        else:
+                            content = raw_content
                             
                         changed_files.append({
                             "absolute_path": full_path,

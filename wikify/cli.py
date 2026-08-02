@@ -39,7 +39,8 @@ def get_wiki_dir(target_path: str) -> str:
 
 @app.command()
 def sync(
-    path: str = typer.Option(".", "--path", "-p", help="Target project directory path to sync")
+    path: str = typer.Option(".", "--path", "-p", help="Target project directory path to sync"),
+    skip_llm: bool = typer.Option(False, "--fast", "-f", help="Fast mode: skip LLM wiki text generation and only index vectors")
 ):
     """Scan local directory, build incremental Wiki markdown files, and index vector embeddings."""
     abs_path = os.path.abspath(path)
@@ -61,7 +62,7 @@ def sync(
     console.print(f"[bold yellow]📦 Found {len(changed_files)} new/modified files to index.[/bold yellow]")
     
     embedding_engine = EmbeddingEngine()
-    llm_provider = LLMProvider()
+    llm_provider = LLMProvider() if not skip_llm else None
     
     with Progress(
         SpinnerColumn(),
@@ -88,15 +89,16 @@ def sync(
             # 2. Update SHA256 hash in DB
             db.set_file_hash(rel_path, sha256)
             
-            # 3. Generate Wiki Markdown Page
-            wiki_filename = rel_path.replace("/", "_").replace("\\", "_") + ".md"
-            wiki_file_path = os.path.join(wiki_dir, wiki_filename)
-            
-            prompt = f"Analyze the following code/text file from '{rel_path}' and generate a structured Markdown wiki entry summary:\n\n{content[:2000]}"
-            wiki_summary = llm_provider.generate(prompt)
-            
-            with open(wiki_file_path, "w", encoding="utf-8") as f:
-                f.write(f"# Wiki Entry: {rel_path}\n\n{wiki_summary}\n")
+            # 3. Generate Wiki Markdown Page (if LLM enabled)
+            if llm_provider:
+                wiki_filename = rel_path.replace("/", "_").replace("\\", "_") + ".md"
+                wiki_file_path = os.path.join(wiki_dir, wiki_filename)
+                
+                prompt = f"Analyze the following code/text file from '{rel_path}' and generate a structured Markdown wiki entry summary:\n\n{content[:2000]}"
+                wiki_summary = llm_provider.generate(prompt)
+                
+                with open(wiki_file_path, "w", encoding="utf-8") as f:
+                    f.write(f"# Wiki Entry: {rel_path}\n\n{wiki_summary}\n")
                 
             progress.advance(task)
             
